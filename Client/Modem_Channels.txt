@@ -1,0 +1,10 @@
+0 = LogMessage
+    table arguments required: owner, message
+1 = Websocket
+2 = SendMessage
+    table arguments required: owner, message
+3 = WriteToMonitor
+    raw string, system (bool)
+4 = startMainLoop
+    bool (false to turn off, true to turn on)
+2000 = Nothing, just refresh the loop
