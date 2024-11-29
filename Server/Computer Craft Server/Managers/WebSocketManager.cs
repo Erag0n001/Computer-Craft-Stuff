@@ -21,6 +21,7 @@ namespace HTTP_Server
         {
             Program.webSocket = this;
             alive = true;
+            DiscordManager.SendMessage(new ChatMessage() { message = "## Server just restarted!" });
             try {
                 Task.Run(async () => { HandleSocket(context); });
             } catch ( Exception ex) {Console.WriteLine(ex); }
@@ -51,6 +52,7 @@ namespace HTTP_Server
         public async Task CloseSocket() 
         {
             Console.WriteLine($"Closing WebSocket. Status: {socket.CloseStatus}, Reason: {socket.CloseStatusDescription}");
+            DiscordManager.SendMessage(new ChatMessage() { message = "## Server is not responding, could be an automatic restart or a crash" });
             closed = true;
             await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing", CancellationToken.None);
         }

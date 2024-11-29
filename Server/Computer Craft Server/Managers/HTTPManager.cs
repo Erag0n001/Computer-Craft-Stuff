@@ -103,7 +103,7 @@ namespace HTTP_Server
                             logs.messages = currentLogs.ToArray();
                             Serializer.SerializeToFile(Program.chatLogPath, logs);
                             Console.WriteLine($"<{dataToLog.owner}> {dataToLog.message}");
-                            Program.discord.SendMessage(dataToLog);
+                            DiscordManager.SendMessage(dataToLog);
                             byte[] buffer = Encoding.UTF8.GetBytes(responseString);
                             response.OutputStream.Write(buffer, 0, buffer.Length);
                             response.OutputStream.Close();

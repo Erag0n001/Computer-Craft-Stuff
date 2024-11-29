@@ -10,7 +10,10 @@ namespace HTTP_Server
         HttpListener listener = new HttpListener();
         public Listener()
         {
-            listener.Prefixes.Add("http://192.168.0.151:25565/"); //Run as admin
+            if(Program.networkConfig.ip == "0.0.0.0")
+                listener.Prefixes.Add($"http://+:{Program.networkConfig.port}/"); //Run as admin
+            else
+                listener.Prefixes.Add($"http://{Program.networkConfig.ip}:{Program.networkConfig.port}/"); //Run as admin
             listener.Start();
             try
             {
